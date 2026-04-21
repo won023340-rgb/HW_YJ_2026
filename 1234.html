@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>여주청년 이혜원</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+    <style>
+        body { font-family: 'Pretendard', sans-serif; background-color: #f5f5f7; }
+        .bento-card {
+            background: white;
+            border-radius: 2.5rem;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(0,0,0,0.03);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+        }
+        /* 메인 대형 영상 섹션 - 기존 사이즈 유지 */
+        .fixed-mega-box {
+            max-width: 1152px;
+            aspect-ratio: 1 / 1;
+            cursor: pointer;
+        }
+        /* 하단 카드 전용 정사각형 비율 고정 */
+        .grid-square-card {
+            aspect-ratio: 1 / 1;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-10 flex flex-col items-center" onclick="unlockAudioContext()">
+
+    <div class="space-y-6 md:space-y-10 w-full max-w-[1152px] flex flex-col items-center">
+        
+        <div class="bento-card fixed-mega-box relative bg-black shadow-2xl border-none" onclick="handleSound(event)">
+            <video id="topVideo" src="main-bg.mp4" autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover"></video>
+            <div id="muteBtn" class="absolute top-6 right-6 z-30 bg-white/90 text-gray-900 px-5 py-2.5 rounded-full font-black shadow-2xl flex items-center gap-2 text-sm md:text-xl transition-all">
+                <span id="muteIcon">🔇</span> <span id="muteText">소리 켜기</span>
+            </div>
+            <div id="clickGuide" class="absolute inset-0 flex items-center justify-center bg-black/10 z-10 pointer-events-none text-center px-4">
+                <p class="text-white text-sm md:text-xl font-bold bg-black/40 px-6 py-3 rounded-2xl backdrop-blur-sm">클릭하면 소리가 나옵니다</p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 w-full">
+
+            <div class="bento-card grid-square-card p-6 md:p-10 flex flex-col justify-center items-center text-center">
+                <div class="text-5xl md:text-7xl mb-4 md:mb-6">💼</div>
+                <h3 class="font-black text-2xl md:text-4xl text-gray-900 mb-4 md:mb-6 tracking-tighter">현장 전문가</h3>
+                <div class="space-y-2 md:space-y-4 text-gray-500 text-base md:text-xl font-bold">
+                    <p class="text-blue-600 font-black text-lg md:text-2xl mb-1">더불어민주당 여주양평 사무차장<br>민주평통 여주시 청년위원장</p>
+                    <p>전) 21대 대선 여주 회계책임자</p>
+                    <p>전) 푸르메재단 무이숲 재무팀</p>
+                </div>
+            </div>
+
+<div class="bento-card grid-square-card bg-[#111827] text-white p-6 md:p-10 justify-center">
+    <h3 class="font-black text-2xl md:text-4xl text-blue-500 mb-6 md:mb-10 text-center tracking-tighter">핵심 역량</h3>
+
+    <div class="space-y-4 md:space-y-6 w-full px-2 md:px-6">
+
+        <!-- 세금 지킴이 -->
+        <div onclick="toggleSkill(this)" class="border-b border-gray-800 pb-2 cursor-pointer">
+            <div class="flex justify-between items-center">
+                <span class="text-lg md:text-2xl font-black">세금 지킴이</span>
+                <span>▼</span>
+            </div>
+            <div class="skill-detail hidden text-blue-400 text-xs md:text-lg font-bold mt-2">
+                시민의 세금, 낭비 없이 제대로 쓰이게<br>
+                예산 감시 강화<br>
+                → 불필요한 행사·전시성 예산 점검, 삭감 제안<br>
+                투명 공개 시스템<br>
+                → 여주시 예산·결산 쉽게 보는 ‘시민 공개 플랫폼’ 추진<br>
+                행정사무감사<br>
+                → 시청 사업·예산 집행 문제 감사 및 시정 요구
+            </div>
+        </div>
+
+        <!-- 생활 지킴이 -->
+        <div onclick="toggleSkill(this)" class="border-b border-gray-800 pb-2 cursor-pointer">
+            <div class="flex justify-between items-center">
+                <span class="text-lg md:text-2xl font-black">생활 지킴이</span>
+                <span>▼</span>
+            </div>
+            <div class="skill-detail hidden text-blue-400 text-xs md:text-lg font-bold mt-2">
+                 시민 일상 속 불편을 바로 해결<br>      
+                 생활 민원 즉시 대응 시스템<br>   
+                 → 도로, 쓰레기, 안전 문제 ‘접수→처리→피드백’ 구조 개선<br>   
+                 야간·여성 안심 환경 강화<br>   
+                 → CCTV 확대, 골목길 조명, 안심귀가 지원<br>   
+                 소상공인·자영업 지원 조례<br>   
+                 → 임대료·홍보·지역화폐 연계 실질 지원 확대<br>   
+            </div>
+        </div>
+
+        <!-- 청년 지킴이 -->
+        <div onclick="toggleSkill(this)" class="border-b border-gray-800 pb-2 cursor-pointer">
+            <div class="flex justify-between items-center">
+                <span class="text-lg md:text-2xl font-black">청년 지킴이</span>
+                <span>▼</span>
+            </div>
+            <div class="skill-detail hidden text-blue-400 text-xs md:text-lg font-bold mt-2">
+                여주에 살고 싶은 청년 도시 만들기<br>
+                청년 정책 조례 제정<br>
+               → 청년위원회, 지원사업 법적 근거 마련 가능<br>
+               청년 예산 확보<br>
+               → 주거·일자리 사업 예산 반영 요구 및 승인<br>
+              집행부 정책 견인<br>
+              → 시장에게 청년 정책 추진 압박 및 협의<br>
+            </div>
+        </div>
+
+    </div>
+</div>        <div class="bento-card bg-[#2563eb] text-white p-8 justify-center !aspect-auto w-full md:p-12">
+            <h3 class="text-2xl md:text-4xl font-black leading-tight tracking-tighter mb-6">
+                떠나지 않아도 되는 여주,<br>다시 돌아오고 싶은 여주.
+            </h3>
+            <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+                <p class="text-blue-50 text-xl md:text-2xl font-bold leading-relaxed">
+                    청년의 실행력으로<br>여주의 변화를 만듭니다.
+                </p>
+                <div class="flex gap-2">
+                    <span class="bg-white/20 px-5 py-2 rounded-full text-xs md:text-sm font-bold">#97년생</span>
+                    <span class="bg-white/20 px-5 py-2 rounded-full text-xs md:text-sm font-bold">#여주시</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-4">
+            <a href="https://www.facebook.com/profile.php?id=61582088739118" target="_blank" class="bento-card !aspect-auto py-6 md:py-10 bg-[#1877F2] text-white flex flex-row items-center justify-center gap-4 shadow-lg border-none active:scale-95 transition-all">
+                <span class="text-3xl md:text-4xl">🔵</span>
+                <span class="text-xl md:text-3xl font-black tracking-tighter">FACEBOOK</span>
+            </a>
+            <a href="https://www.youtube.com/@%EC%9D%B4%ED%98%9C%EC%9B%90TV" target="_blank" class="bento-card !aspect-auto py-6 md:py-10 bg-blue-600 text-white flex flex-row items-center justify-center gap-4 shadow-lg active:scale-95 transition-all border-none">
+                <span class="text-3xl md:text-4xl">🔴</span>
+                <span class="text-xl md:text-3xl font-black tracking-tighter">이혜원TV</span>
+            </a>
+        </div>
+
+        <footer class="text-center py-10 text-gray-400 text-[10px] md:text-xs font-black tracking-[0.2em] uppercase opacity-40">
+            © 2026 Lee Hye-won. 여주청년 이혜원
+        </footer>
+    </div>
+
+    <script>
+    const video = document.getElementById('topVideo');
+    const icon = document.getElementById('muteIcon');
+    const text = document.getElementById('muteText');
+    const btn = document.getElementById('muteBtn');
+    const guide = document.getElementById('clickGuide');
+
+    function unlockAudioContext() {
+        video.play();
+    }
+
+    function handleSound(event) {
+        if (video.muted) {
+            video.muted = false;
+            video.volume = 1.0;
+            video.play();
+            icon.innerText = "🔊";
+            text.innerText = "소리 끄기";
+            btn.classList.replace('bg-white/90', 'bg-blue-600');
+            btn.classList.add('text-white');
+            guide.style.display = 'none';
+        } else {
+            video.muted = true;
+            icon.innerText = "🔇";
+            text.innerText = "소리 켜기";
+            btn.classList.replace('bg-blue-600', 'bg-white/90');
+            btn.classList.remove('text-white');
+        }
+    }
+
+    /* 🔥 여기 추가 */
+    function toggleSkill(el){
+        const detail = el.querySelector('.skill-detail');
+        detail.classList.toggle('hidden');
+    }
+
+    </script>
+</body>
+</html>
